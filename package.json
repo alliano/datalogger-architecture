@@ -1,0 +1,15 @@
+{
+  "name": "dataloger",
+  "version": "1.0.0",
+  "description": "dataloger app",
+  "main": "./src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./src/server.js"
+  },
+  "author": "ali",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
