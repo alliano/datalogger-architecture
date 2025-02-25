@@ -1,3 +1,5 @@
+import { Socket } from "node:dgram";
+
 export class ParsingService {
   constructor() {
     if (ParsingService.instance) return ParsingService.instance;
@@ -6,9 +8,18 @@ export class ParsingService {
 
 
 
-  parsingData(data){
-    console.log(data.toString());
-    throw new Error("Method not implemented.");
+  /**
+   * 
+   * @param {} data 
+   * @param {Socket} socket 
+   */
+  parsingData(data, socket){
+    console.log("RECEIVE: ", data.toString());
+    socket.write("\x05");
+    // if(data == 0x06){
+    //   console.log(Buffer.from(data))
+    // }
+    return socket;
   }
 
   
