@@ -1,13 +1,17 @@
-import { ParsingService } from "../configurations/injections.config.js";
+import {ParsingService } from "../configurations/injections.config.js";
 import { Socket } from "node:dgram";
 /**
  * 
  * @param {{}} data 
  * @param {Socket} socket 
  */
-export function onReceiveListener(data, socket) {
+export function onReceiveListener(data) {
   try{
-    return ParsingService.parsingData(data, socket);
+    // socket.write("HELLO")
+    /**
+     * call the logic to process the data that sent from analyzer
+     */
+    ParsingService.parsingData(data);
   }catch(err){
     console.error(err);
   }
