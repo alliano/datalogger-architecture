@@ -20,11 +20,17 @@ export class ParsingService {
    * @param {Socket} socket 
    */
   parsingData(data){
+    throw new Error("ERRORRRR")
     const socket = ApplicationContext.getContext(APPLICATION_SOCKET);
     console.log("RECEIVE: ", data.toString());
     if(data == ACK) socket.write(NAK);
-    
-    if(data == EOT) socket.write("COMMUNICATION END")
+    if(data == EOT) {
+      console.log("SERVER RECEIVE EOT, THE COMMUNICATION WILL BE END...")
+      const timeOut = setTimeout(() => {
+        socket.write("COMMUNICATION END")
+        clearTimeout(timeOut);
+      }, 3000);
+    }
   }
 
 }

@@ -1,3 +1,4 @@
+import { applicationEvent } from "../configurations/applicationEvent.config.js";
 import {ParsingService } from "../configurations/injections.config.js";
 import { Socket } from "node:dgram";
 /**
@@ -7,12 +8,11 @@ import { Socket } from "node:dgram";
  */
 export function onReceiveListener(data) {
   try{
-    // socket.write("HELLO")
     /**
      * call the logic to process the data that sent from analyzer
      */
     ParsingService.parsingData(data);
   }catch(err){
-    console.error(err);
+    applicationEvent.emit("error", err);
   }
 }

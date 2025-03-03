@@ -5,6 +5,8 @@ import { onConnectedListener } from "./listeners/onConnect.listenere.js";
 import { onErrorListener } from "./listeners/onError.listener.js";
 import { ApplicationContext } from "./configurations/injections.config.js";
 import { APPLICATION_SOCKET } from "./context/context.js";
+import { applicationEvent } from "./configurations/applicationEvent.config.js";
+import { onApplicationErrorListener } from "./listeners/onApplicationError.listener.js";
 
 /**
  * 
@@ -20,6 +22,7 @@ const initSever = (socket) => {
     socket.on("connect", onConnectedListener);
     socket.on("error", onErrorListener);
     socket.on("close", onConnectedListener)
+    applicationEvent.on("error", onApplicationErrorListener)
   } catch (err) {
     console.error(err);
   }
